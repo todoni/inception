@@ -14,6 +14,7 @@ RUN set -x \
     	-keyout rootca.key -out rootca.crt
 
 COPY ./nginx.conf /etc/nginx
+COPY ./index.html /www/index.html
 
 EXPOSE 80
 
