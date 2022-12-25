@@ -13,8 +13,7 @@ RUN set -x \
     	-subj "/C=KR/ST=Denial/L=Seoul/O=Dis/CN=sohan.42.fr" \
     	-keyout rootca.key -out rootca.crt
 
-COPY ./nginx.conf /etc/nginx
-COPY ./index.html /www/index.html
+COPY ./nginx_server.conf /etc/nginx/http.d/default.conf
 
 EXPOSE 80
 
