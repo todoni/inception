@@ -13,9 +13,9 @@ RUN set -x \
     	-subj "/C=KR/ST=Denial/L=Seoul/O=Dis/CN=sohan.42.fr" \
     	-keyout rootca.key -out rootca.crt
 
-COPY ./nginx_server.conf /etc/nginx/http.d/default.conf
+COPY ./my.conf /etc/nginx/http.d/my.conf
 
-EXPOSE 80
+EXPOSE 443
 
 STOPSIGNAL SIGQUIT
 
