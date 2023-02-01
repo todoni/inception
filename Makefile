@@ -5,7 +5,7 @@ HOST_FILE = /etc/hosts
 HOST_IP = 127.0.0.1
 HOST_DOMAIN = sohan.42.fr
 
-up : clean 
+up : clean
 	@sudo mkdir -p ${WP_VOLUME}
 	@sudo mkdir -p ${MARIADB_VOLUME}
 	@sudo grep -qxF "${HOST_IP} ${HOST_DOMAIN}" ${HOST_FILE} || echo "${HOST_IP} ${HOST_DOMAIN}" >> ${HOST_FILE}
