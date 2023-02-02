@@ -3,22 +3,10 @@ networks:
     name: inception-net
     driver: bridge
 
-volumes:
-  wordpress-volume:
-    driver_opts:
-      type: none
-      device: '/home/sohan/data/wordpress'
-      o: bind
-
-  database-volume:
-    driver_opts:
-      type: none
-      device: '/home/sohan/data/mariadb'
-      o: bind
-
 services:
   nginx:
     image: nginx-inception:1.0
+    init: true
     build:
       context: ./requirements/nginx/
     networks:
@@ -27,13 +15,16 @@ services:
     ports:
       - "443:443"
     volumes:
-      - wordpress-volume:/var/www/html/wordpress
+      - type: bind
+        source: /home/sohan/data/wordpress
+        target: /var/www/html/wordpress
     env_file:
       - .env
     restart: always
 
   mariadb:
     image: mariadb-inception:1.0
+    init: true
     build:
       context: ./requirements/mariadb/
     networks:
@@ -42,7 +33,9 @@ services:
     ports:
       - "3306"
     volumes:
-      - database-volume:/var/lib/mysql
+      - type: bind
+        source: /home/sohan/data/mariadb
+        target: /var/lib/mysql
     env_file:
       - .env
     restart: always
@@ -51,6 +44,7 @@ services:
     depends_on: 
       - mariadb
     image: wordpress-inception:1.0
+    init: true
     build:
       context: ./requirements/wordpress/
     networks:
@@ -59,7 +53,9 @@ services:
     ports:
       - "9000"
     volumes:
-      - wordpress-volume:/var/www/html/wordpress
+      - type: bind
+        source: /home/sohan/data/wordpress
+        target: /var/www/html/wordpress
     env_file:
       - .env
     restart: always
