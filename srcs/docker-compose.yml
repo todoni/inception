@@ -1,7 +1,6 @@
-version: '3' 
-
-networks: 
+networks:
   my_network:
+    name: inception-net
     driver: bridge
 
 volumes:
@@ -18,8 +17,10 @@ volumes:
       o: bind
 
 services:
-  nginx: 
-    build: ./requirements/nginx/
+  nginx:
+    image: nginx-inception:1.0
+    build:
+      context: ./requirements/nginx/
     networks:
       - my_network
     container_name: nginx
@@ -32,7 +33,9 @@ services:
     restart: always
 
   mariadb:
-    build: ./requirements/mariadb/
+    image: mariadb-inception:1.0
+    build:
+      context: ./requirements/mariadb/
     networks:
       - my_network
     container_name: mariadb
@@ -47,7 +50,9 @@ services:
   wordpress:
     depends_on: 
       - mariadb
-    build: ./requirements/wordpress/
+    image: wordpress-inception:1.0
+    build:
+      context: ./requirements/wordpress/
     networks:
       - my_network
     container_name: wordpress
