@@ -1,6 +1,8 @@
 FROM alpine:3.16
 
-MAINTAINER sohan <sohan@student.42seoul.kr>
+LABEL maintainer="Sojeong Han <42.4.sohan@gmail.com>" \
+    nginx-version="1.22.1" \
+    alpine-version="3.16.0"
 
 WORKDIR /etc/ssl/private
 

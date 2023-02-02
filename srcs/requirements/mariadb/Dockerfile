@@ -1,5 +1,9 @@
 FROM alpine:3.16
 
+LABEL maintainer="Sojeong Han <42.4.sohan@gmail.com>" \
+    mairadb-version="10.6.10" \
+    alpine-version="3.16.0"
+
 RUN set -x \
 	&& apk update --no-cache \
     && apk add mysql mysql-client --no-cache
