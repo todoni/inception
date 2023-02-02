@@ -6,7 +6,7 @@ LABEL maintainer="Sojeong Han <42.4.sohan@gmail.com>" \
     alpine-version="3.16.0"
 
 RUN apk update --no-cache \
-    && apk add php8 php8-fpm php8-mysqli php8-phar php8-iconv mysql-client curl \
+    && apk add php8 php8-fpm php8-mysqli php8-phar php8-iconv mysql-client curl --no-cache \
     && curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
     && chmod +x wp-cli.phar \
     && mv wp-cli.phar /usr/local/bin \

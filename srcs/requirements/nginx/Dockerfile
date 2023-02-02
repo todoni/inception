@@ -17,6 +17,8 @@ RUN set -x \
 
 COPY ./my.conf /etc/nginx/http.d/my.conf
 
+COPY ./error.html /usr/share/nginx/html/error.html
+
 EXPOSE 443
 
 STOPSIGNAL SIGQUIT
