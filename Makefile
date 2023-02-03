@@ -14,17 +14,21 @@ up :
 down :
 	@sudo docker compose -f ${COMPOSE_FILE} down
 
-rdown :
+ridown :
 	@sudo docker compose -f ${COMPOSE_FILE} down --rmi all --remove-orphans
 
-clean : rdown
+rvdown : 
+	@sudo docker compose -f ${COMPOSE_FILE} down -v
+
+clean : ridown
 	@sudo rm -rf ${WP_VOLUME}
 	@sudo rm -rf ${MARIADB_VOLUME}
 
 re : down up
 
-rre : rdown up
+rre : ridown up
 
 f : clean up
 
-.PHONY: up down clean re rre rdown f
+
+.PHONY: up down clean re rre ridown rvdown f
