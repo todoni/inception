@@ -5,7 +5,7 @@ networks:
 
 services:
   nginx:
-    image: nginx-inception:1.0
+    image: nginx:inception
     init: true
     build:
       context: ./requirements/nginx/
@@ -23,7 +23,7 @@ services:
     restart: always
 
   mariadb:
-    image: mariadb-inception:1.0
+    image: mariadb:inception
     init: true
     build:
       context: ./requirements/mariadb/
@@ -43,7 +43,7 @@ services:
   wordpress:
     depends_on: 
       - mariadb
-    image: wordpress-inception:1.0
+    image: wordpress:inception
     init: true
     build:
       context: ./requirements/wordpress/
