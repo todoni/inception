@@ -25,4 +25,4 @@ STOPSIGNAL SIGQUIT
 
 VOLUME ["/var/www/html/wordpress"]
 
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+CMD ["nginx", "-g", "daemon off;"]
