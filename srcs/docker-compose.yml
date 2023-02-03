@@ -3,6 +3,21 @@ networks:
     name: inception-net
     driver: bridge
 
+volumes:
+  volume-db:
+    name: wordpress-database
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/sohan/data/mariadb
+
+  volume-files:
+    name: wordpress-files
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/sohan/data/wordpress
+
 services:
   nginx:
     image: nginx:inception
@@ -15,9 +30,7 @@ services:
     ports:
       - "443:443"
     volumes:
-      - type: bind
-        source: /home/sohan/data/wordpress
-        target: /var/www/html/wordpress
+      - volume-files:/var/www/html/wordpress
     env_file:
       - .env
     restart: always
@@ -33,9 +46,7 @@ services:
     ports:
       - "3306"
     volumes:
-      - type: bind
-        source: /home/sohan/data/mariadb
-        target: /var/lib/mysql
+      - volume-db:/var/lib/mysql
     env_file:
       - .env
     restart: always
@@ -53,9 +64,7 @@ services:
     ports:
       - "9000"
     volumes:
-      - type: bind
-        source: /home/sohan/data/wordpress
-        target: /var/www/html/wordpress
+      - volume-files:/var/www/html/wordpress
     env_file:
       - .env
     restart: always

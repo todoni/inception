@@ -23,4 +23,6 @@ EXPOSE 443
 
 STOPSIGNAL SIGQUIT
 
+VOLUME ["/var/www/html/wordpress"]
+
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
