@@ -14,6 +14,8 @@ RUN apk update --no-cache \
 
 ADD run.sh /scripts/run.sh
 
+ADD www.conf /etc/php8/php-fpm.d/www.conf
+
 WORKDIR /var/www/html/wordpress
 
 RUN chmod +x /scripts/run.sh
