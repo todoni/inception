@@ -8,7 +8,7 @@ LOCAL_DNS_FILE = /etc/hosts
 up : 
 	@sudo mkdir -p ${WP_VOLUME}
 	@sudo mkdir -p ${MARIADB_VOLUME}
-	@sudo grep -qxF "${LOCALHOST} ${DOMAIN}" ${LOCAL_DNS_FILE} || echo "${LOCALHOST} ${DOMAIN}" >> ${LOCAL_DNS_FILE}
+	@sudo grep -qxF "${LOCALHOST} ${DOMAIN}" ${LOCAL_DNS_FILE} || echo "${LOCALHOST} ${DOMAIN}" | sudo tee -a /etc/hosts
 	@sudo docker compose -f ${COMPOSE_FILE} up -d
 
 down :
